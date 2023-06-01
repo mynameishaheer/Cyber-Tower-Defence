@@ -1,5 +1,5 @@
 ### Cyber-Tower-Defence
-####Game created for Information Security and Ethics
+#### Game created for Information Security and Ethics
 
 The purpose of this game is to provide a fun and engaging way to learn about cyber security.
 
