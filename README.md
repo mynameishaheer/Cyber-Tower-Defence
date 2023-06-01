@@ -3,7 +3,7 @@
 
 The purpose of this game is to provide a fun and engaging way to learn about cyber security.
 
-##### Running the code
+#### Running the code
 1. Open in VS Code
 2. Install VS Code Extension "p5.vscode" by publisher Sam Lavigne
 3. Right click on ```index.html```
