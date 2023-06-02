@@ -14,6 +14,11 @@ let antivirusSpriteRight;
 let antivirusSpriteLeft;
 
 let aVSprites = [];
+let idsSprites = [];
+let firewallSprites = [];
+let netSegSprites = [];
+let encryptionSprites = [];
+let backupSprites = [];
 
 let map;
 let network;
@@ -22,55 +27,72 @@ let interface;
 let interfaceLargeFont;
 let interfaceSmallFont;
 
+let menu;
+
 let enemies = [];
 let enemiesKilled = 0;
 let defenses = [];
 // let enemiesEscaped = 0;
+
+let money = 10000;
+let gameState = "mainMenu";
 
 function setup() {
   createCanvas(windowWidth, wHeight);
   loadAssets();
   createMap();
   interface = new Interface();
+  menu = new Menu();
 }
 
 function draw() {
-  //* Update the ticker
-  updateTicker();
+  if (gameState == "play") {
+    //* Update the ticker
+    updateTicker();
 
-  background("white");
+    background("white");
 
-  //* Draw the map
-  map.draw_grid();
+    //* Draw the map
+    map.draw_grid();
 
-  //* Create the enemy
-  if (tick % 50 == 0) {
-    createVirus();
-  }
-
-  //* Draw the enemies
-  for (e in enemies) {
-    enemies[e].draw();
-  }
-
-  for (d in defenses) {
-    defenses[d].draw();
-  }
-
-  interface.draw();
-
-  for (towerIndex in interface.towers) {
-    const tower = interface.towers[towerIndex];
-    if (tower !== null) {
-      tower.draw();
+    //* Create the enemy
+    if (tick % 50 == 0) {
+      createVirus();
     }
+
+    //* Draw the enemies
+    for (e in enemies) {
+      enemies[e].draw();
+    }
+
+    for (d in defenses) {
+      defenses[d].draw();
+    }
+
+    interface.draw();
+
+    for (towerIndex in interface.towers) {
+      const tower = interface.towers[towerIndex];
+      if (tower !== null) {
+        tower.draw();
+      }
+    }
+
+    collisions();
+
+    network.draw_grid();
+
+    //* Control the framework
+
+    //* Render text
+    // text(enemies.length, 100, 20);
+
+    frameRate(60);
+  } else if (gameState == "mainMenu") {
+    background("white");
+
+    menu.draw();
   }
-
-  collisions();
-
-  network.draw_grid();
-
-  frameRate(60);
 }
 
 /* Game Engine */
@@ -94,6 +116,19 @@ function loadAssets() {
 
   for (let i = 1; i < 7; i++) {
     aVSprites.push(loadImage(`./assets/sprites/tools/antivirusSprite${i}.png`));
+    idsSprites.push(loadImage(`./assets/sprites/tools/ids/idsSprite${i}.png`));
+    firewallSprites.push(
+      loadImage(`./assets/sprites/tools/firewall/firewallSprite${i}.png`)
+    );
+    netSegSprites.push(
+      loadImage(`./assets/sprites/tools/netSeg/netSegSprite${i}.png`)
+    );
+    encryptionSprites.push(
+      loadImage(`./assets/sprites/tools/encryption/encryptionSprite${i}.png`)
+    );
+    backupSprites.push(
+      loadImage(`./assets/sprites/tools/backup/backupSprite${i}.png`)
+    );
   }
 
   // antivirusSpriteRight = loadImage(
