@@ -44,7 +44,7 @@ function draw() {
   map.draw_grid();
 
   //* Create the enemy
-  if (tick % 200 == 0) {
+  if (tick % 50 == 0) {
     createVirus();
   }
 
@@ -65,6 +65,8 @@ function draw() {
       tower.draw();
     }
   }
+
+  collisions();
 
   network.draw_grid();
 
@@ -136,13 +138,13 @@ function createVirus() {
   rand = floor(random(0, 12));
   //left
   if (rand == 0) {
-    enemies.push(new Enemy(15, 7, 400, 550, "left", 1, 1, whichSprite, type));
+    enemies.push(new Enemy(15, 7, 324, 550, "left", 1, 1, whichSprite, type));
   }
   if (rand == 1) {
-    enemies.push(new Enemy(16, 7, 450, 575, "left", 2, 1, whichSprite, type));
+    enemies.push(new Enemy(16, 7, 324, 575, "left", 2, 1, whichSprite, type));
   }
   if (rand == 2) {
-    enemies.push(new Enemy(17, 7, 500, 600, "left", 3, 1, whichSprite, type));
+    enemies.push(new Enemy(17, 7, 324, 600, "left", 3, 1, whichSprite, type));
   }
   //top
   if (rand == 3) {
@@ -185,5 +187,74 @@ function createVirus() {
     enemies.push(
       new Enemy(15, -7, 1100, 200, "right", 3, 1, whichSprite, type)
     );
+  }
+}
+
+// function collisions() {
+//   for (let i = 0; i < interface.towers.length; i++) {
+//     let tower = interface.towers[i];
+//     let towerBoundingBox = {};
+
+//     towerBoundingBox = {
+//       x: tower.x,
+//       y: tower.y,
+//       width: tower.width,
+//       height: tower.height,
+//     };
+
+//     for (let j = 0; j < enemies.length; j++) {
+//       let enemy = enemies[j];
+//       let enemyBoundingBox = {
+//         x: enemy.isometric_x,
+//         y: enemy.isometric_y,
+//         width: enemy.width,
+//         height: enemy.height,
+//       };
+
+//       if (
+//         enemyBoundingBox.x < towerBoundingBox.x + towerBoundingBox.width &&
+//         enemyBoundingBox.x + enemyBoundingBox.width > towerBoundingBox.x &&
+//         enemyBoundingBox.y < towerBoundingBox.y + towerBoundingBox.height &&
+//         enemyBoundingBox.y + enemyBoundingBox.height > towerBoundingBox.y
+//       ) {
+//         console.log("collision");
+//         enemies[j].hp -= 1;
+//         if (enemies[j].hp <= 0) {
+//           enemies.splice(j, 1);
+//         }
+//       }
+//     }
+//   }
+// }
+
+function collisions() {
+  const towerWidth = 20; // Adjust the tower width
+  const towerHeight = 20; // Adjust the tower height
+  const enemyWidth = 20; // Adjust the enemy width
+  const enemyHeight = 20; // Adjust the enemy height
+
+  for (let i = 0; i < interface.towers.length; i++) {
+    let tower = interface.towers[i];
+
+    let towerCenterX = tower.x + tower.width / 2;
+    let towerCenterY = tower.y + tower.height / 2;
+
+    for (let j = 0; j < enemies.length; j++) {
+      let enemy = enemies[j];
+
+      let enemyCenterX = enemy.isometric_x + enemy.width / 2;
+      let enemyCenterY = enemy.isometric_y + enemy.height / 2;
+
+      if (
+        Math.abs(enemyCenterX - towerCenterX) < (enemyWidth + towerWidth) / 2 &&
+        Math.abs(enemyCenterY - towerCenterY) < (enemyHeight + towerHeight) / 2
+      ) {
+        console.log("collision");
+        enemies[j].hp -= 1;
+        if (enemies[j].hp <= 0) {
+          enemies.splice(j, 1);
+        }
+      }
+    }
   }
 }

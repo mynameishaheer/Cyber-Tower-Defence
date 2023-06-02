@@ -6,6 +6,9 @@ GRID_SIZE = 15;
 let selectedTile = null;
 let isDragging = false;
 
+let offsetUseX = TILE_WIDTH / 2;
+let offsetUseY = TILE_HEIGHT / 2;
+
 var dir = "none";
 
 class Interface {
@@ -238,16 +241,24 @@ class Interface {
       if (map.grid[nearestTile.j][nearestTile.i] === 33) {
         //top and bttom
         if (selectedTile.isOccupied === false) {
-          image(aVSprites[4], nearestTileX - 25, nearestTileY - 12);
+          //top
+          image(aVSprites[4], nearestTileX, nearestTileY);
         } else {
-          image(aVSprites[5], nearestTileX - 25, nearestTileY - 12);
+          //bottom
+          image(aVSprites[5], nearestTileX, nearestTileY);
         }
       } else if (map.grid[nearestTile.j][nearestTile.i] === 34) {
         //left and right
         if (selectedTile.isOccupied === false) {
-          image(aVSprites[1], nearestTileX + 25, nearestTileY - 12);
+          //left
+          image(aVSprites[1], nearestTileX + offsetUseX, nearestTileY);
         } else {
-          image(aVSprites[2], nearestTileX + 25, nearestTileY - 12);
+          //right
+          image(
+            aVSprites[2],
+            nearestTileX - offsetUseX,
+            nearestTileY - offsetUseY
+          );
         }
       }
 
@@ -385,26 +396,68 @@ function mouseReleased() {
   ) {
     if (selectedTile.isOccupied === false) {
       let spriteIndex = 3;
-      if (dir === "left" || dir === "right") {
+      if (dir === "left") {
         spriteIndex = 0;
+        let towerX = nearestTileX + offsetUseX;
+        let towerY = nearestTileY;
+        let towerIsometricX = towerX;
+        let towerIsometricY = towerY;
         interface.towers.push(
           new Defense(
-            nearestTileX + 25,
-            nearestTileY - 12,
+            towerIsometricX,
+            towerIsometricY,
             aVSprites[spriteIndex],
             "antivirus",
-            50
+            50,
+            dir
           )
         );
-      } else {
-        spriteIndex = 3;
+      } else if (dir === "right") {
+        spriteIndex = 0;
+        let towerX = nearestTileX + offsetUseX;
+        let towerY = nearestTileY;
+        let towerIsometricX = towerX;
+        let towerIsometricY = towerY;
         interface.towers.push(
           new Defense(
-            nearestTileX - 25,
-            nearestTileY - 12,
+            towerIsometricX,
+            towerIsometricY,
             aVSprites[spriteIndex],
             "antivirus",
-            50
+            50,
+            dir
+          )
+        );
+      } else if (dir === "top") {
+        spriteIndex = 3;
+        let towerX = nearestTileX;
+        let towerY = nearestTileY;
+        let towerIsometricX = towerX;
+        let towerIsometricY = towerY;
+        interface.towers.push(
+          new Defense(
+            towerIsometricX,
+            towerIsometricY,
+            aVSprites[spriteIndex],
+            "antivirus",
+            50,
+            dir
+          )
+        );
+      } else if (dir === "bottom") {
+        spriteIndex = 3;
+        let towerX = nearestTileX;
+        let towerY = nearestTileY;
+        let towerIsometricX = towerX;
+        let towerIsometricY = towerY;
+        interface.towers.push(
+          new Defense(
+            towerIsometricX,
+            towerIsometricY,
+            aVSprites[spriteIndex],
+            "antivirus",
+            50,
+            dir
           )
         );
       }
@@ -413,3 +466,51 @@ function mouseReleased() {
     }
   }
 }
+
+// function mouseReleased() {
+//   console.log("mouse released");
+//   if (
+//     interface.selected === "antivirus" &&
+//     selectedTile != null &&
+//     selectedTile.isOccupied === false
+//   ) {
+//     if (selectedTile.isOccupied === false) {
+//       let spriteIndex = 3;
+//       if (dir === "left" || dir === "right") {
+//         spriteIndex = 0;
+//         let towerX = nearestTileX + offsetUseX;
+//         let towerY = nearestTileY - offsetUseY;
+//         let towerIsometricX = towerX;
+//         let towerIsometricY = towerY;
+//         interface.towers.push(
+//           new Defense(
+//             towerIsometricX,
+//             towerIsometricY,
+//             aVSprites[spriteIndex],
+//             "antivirus",
+//             50,
+//             dir
+//           )
+//         );
+//       } else {
+//         spriteIndex = 3;
+//         let towerX = nearestTileX - offsetUseX;
+//         let towerY = nearestTileY - offsetUseY;
+//         let towerIsometricX = towerX;
+//         let towerIsometricY = towerY;
+//         interface.towers.push(
+//           new Defense(
+//             towerIsometricX,
+//             towerIsometricY,
+//             aVSprites[spriteIndex],
+//             "antivirus",
+//             50,
+//             dir
+//           )
+//         );
+//       }
+
+//       selectedTile.isOccupied = true;
+//     }
+//   }
+// }

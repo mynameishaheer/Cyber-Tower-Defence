@@ -4,14 +4,16 @@ class Enemy {
     this.y = y;
     this.isometric_x = isoX;
     this.isometric_y = isoY;
-    this.hp = 500;
+    this.hp = 2;
     this.side = side;
     this.lane = lane;
-    this.speed = 0.01;
+    this.speed = 0.05;
     this.size = 64;
     this.tick = 0;
     this.sprite = sprite;
     this.type = type;
+    this.width = 43;
+    this.height = 43;
   }
 
   updateIsometricPosition() {
