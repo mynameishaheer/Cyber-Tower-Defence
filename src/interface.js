@@ -7,10 +7,17 @@ let selectedTile = null;
 let isDragging = false;
 
 var dir = "none";
+let isDragging = false;
+
+var dir = "none";
 
 class Interface {
   constructor() {
     this.selected = "none";
+    this.towers = [];
+    this.isDragging = false;
+    this.passToTowerX = null;
+    this.passToTowerY = null;
     this.towers = [];
     this.isDragging = false;
     this.passToTowerX = null;
@@ -676,7 +683,76 @@ class Interface {
         dir = "none";
       }
 
-      // text("Direction is: " + dir, 200, 440);
+      text("Direction is: " + dir, 200, 440);
+    }
+  }
+
+  drawBuyStation() {
+    noStroke();
+    fill(30, 30, 30);
+    rect(windowWidth - 320, 0, 390, height, 20);
+    fill("black");
+    noStroke();
+    // text(this.selected, 200, 200);
+    fill("white");
+    textFont(interfaceLargeFont);
+    textSize(30);
+    text("Buy Station", width - 250, 60);
+    fill("black");
+    textFont(interfaceSmallFont);
+    textSize(18);
+    if (this.selected === "antivirus") {
+      cursor("grabbing");
+    } else {
+      cursor("grab");
+    }
+  }
+
+  drawAntiVirus() {
+    image(aVSprites[0], width - 200, 100);
+
+    if (
+      mouseX >= width - 200 &&
+      mouseX <= width - 172 &&
+      mouseY >= 100 &&
+      mouseY <= 157
+    ) {
+      fill(0, 0, 0, 0);
+      stroke("white");
+      rect(width - 214, 57 + 28, 60, 80);
+      noStroke();
+      fill("black");
+      cursor("grab");
+
+      if (mouseIsPressed) {
+        cursor("grabbing");
+        this.selected = "antivirus";
+      } else {
+        cursor("grab");
+        this.selected = "none";
+      }
+    } else {
+      cursor("default");
+    }
+  }
+
+  drawAntivirusOnMouse() {
+    if (this.selected === "antivirus") {
+      cursor("grabbing");
+      image(aVSprites[0], mouseX - 14, mouseY - 28);
+      this.isDragging = true;
+    } else {
+      this.isDragging = false;
+    }
+  }
+
+  update() {
+    if (mouseIsPressed != true) {
+      this.selected = "none";
+    }
+    if (this.selected == "antivirus") {
+      cursor("grabbing");
+      this.drawAntivirusOnMouse();
     }
   }
 
