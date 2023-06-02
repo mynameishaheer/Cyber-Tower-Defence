@@ -27,6 +27,8 @@ class Map {
 
     this.x_start = 0;
     this.y_start = 0;
+    this.selectedTileImageX = null;
+    this.selectedTileImageY = null;
   }
 
   draw_grid() {
@@ -49,6 +51,8 @@ class Map {
   setup() {
     for (let i = 0; i <= 39; i++) {
       this.tile_images.push(loadImage("./assets/tiles/tile-" + i + ".png"));
+      this.selectedTileImageX = loadImage("./assets/tiles/tile-x-red.png");
+      this.selectedTileImageY = loadImage("./assets/tiles/tile-y-red.png");
     }
   }
 }

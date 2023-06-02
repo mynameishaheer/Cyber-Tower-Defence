@@ -34,7 +34,7 @@ function draw() {
   //* Update the ticker
   updateTicker();
 
-  background("whtie");
+  background("white");
 
   //* Draw the map
   map.draw_grid();
@@ -50,14 +50,15 @@ function draw() {
   }
 
   //* Draw the central network
+  interface.draw();
   network.draw_grid();
 
   //* Control the framework
-  frameRate(60);
 
   //* Render text
   // text(enemies.length, 100, 20);
-  interface.draw();
+
+  frameRate(60);
 }
 
 /* Game Engine */

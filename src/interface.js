@@ -1,4 +1,7 @@
 let nearestTileX, nearestTileY;
+TILE_WIDTH = 100;
+TILE_HEIGHT = 50;
+GRID_SIZE = 15;
 
 class Interface {
   constructor() {
@@ -247,35 +250,57 @@ class Interface {
     }
   }
 
-  //! This is not working
-  //   snap_to_nearest_road() {
-  //     let minDistance = Infinity;
-  //     for (let i = 0; i < GRID_SIZE; i++) {
-  //       for (let j = 0; j < GRID_SIZE; j++) {
-  //         if (map.grid[i][j] === 33 || map.grid[i][j] === 34) {
-  //           let x_screen = map.x_start + ((i - j) * TILE_WIDTH) / 2;
-  //           let y_screen = map.y_start + ((i + j) * TILE_HEIGHT) / 2;
-  //           let distance = dist(mouseX, mouseY + 20, x_screen, y_screen);
-  //           if (distance < minDistance) {
-  //             minDistance = distance;
-  //             nearestTileX = i;
-  //             nearestTileY = j;
-  //           }
-  //         }
-  //       }
-  //     }
-  //     let x_screen =
-  //       map.x_start + ((nearestTileX - nearestTileY) * TILE_WIDTH) / 2;
-  //     let y_screen = ``;
-  //     map.y_start + ((nearestTileX + nearestTileY) * TILE_HEIGHT) / 2;
-  //     // cursor("grab");
-  //     if (minDistance < TILE_WIDTH / 2) {
-  //       //   cursor("grabbing");
-  //       fill(255, 0, 0);
-  //       rect(x_screen, mouseY, 10, 10);
-  //       //   ellipse(nearestTileX, nearestTileY, 10, 10);
-  //     }
-  //   }
+  snap_to_nearest_road() {
+    let minDistance = Infinity;
+    let nearestTile = null;
+
+    let mouseGridX = (mouseX - map.x_start) / TILE_WIDTH;
+    let mouseGridY = (mouseY - map.y_start - TILE_HEIGHT / 2) / TILE_HEIGHT;
+
+    let mouseIsoX = mouseGridY + mouseGridX;
+    let mouseIsoY = mouseGridY - mouseGridX;
+
+    console.log("mouseX:", mouseX, "mouseIsoX:", mouseIsoX);
+    console.log("mouseY:", mouseY, "mouseIsoY:", mouseIsoY);
+    text("mouseX: " + mouseX, 200, 300);
+    text("mouseY: " + mouseY, 200, 320);
+    text("mouseIsoX: " + mouseIsoX, 200, 340);
+    text("mouseIsoY: " + mouseIsoY, 200, 360);
+
+    for (let i = 0; i < GRID_SIZE; i++) {
+      for (let j = 0; j < GRID_SIZE; j++) {
+        let dist = Math.hypot(i - mouseIsoX, j - mouseIsoY);
+        if (
+          dist < minDistance &&
+          (map.grid[j][i] === 33 || map.grid[j][i] === 34)
+        ) {
+          minDistance = dist;
+          nearestTile = { i: i, j: j };
+        }
+      }
+    }
+
+    if (
+      nearestTile &&
+      (map.grid[nearestTile.j][nearestTile.i] === 33 ||
+        map.grid[nearestTile.j][nearestTile.i] === 34)
+    ) {
+      let nearestTileX =
+        map.x_start + (nearestTile.i - nearestTile.j) * (TILE_WIDTH / 2);
+      let nearestTileY =
+        map.y_start + (nearestTile.i + nearestTile.j) * (TILE_HEIGHT / 2);
+
+      console.log("nearestTileX:", nearestTileX, "nearestTileY:", nearestTileY);
+      text("nearestTileX: " + nearestTileX, 200, 380);
+      text("nearestTileY: " + nearestTileY, 200, 400);
+
+      if (map.grid[nearestTile.j][nearestTile.i] === 33) {
+        image(map.selectedTileImageY, nearestTileX, nearestTileY);
+      } else if (map.grid[nearestTile.j][nearestTile.i] === 34) {
+        image(map.selectedTileImageX, nearestTileX, nearestTileY);
+      }
+    }
+  }
 
   draw() {
     this.drawTitle();
@@ -293,10 +318,8 @@ class Interface {
     noStroke();
     this.drawAntiVirus();
     text(this.selected, 200, 200);
+    this.snap_to_nearest_road();
 
     this.update();
-
-    //! This is not working
-    // this.snap_to_nearest_road();
   }
 }

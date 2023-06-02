@@ -7,7 +7,7 @@ class Enemy {
     this.hp = hp;
     this.side = side;
     this.lane = lane;
-    this.speed = 1;
+    this.speed = 0.01;
     this.size = 64;
     this.tick = 0;
     this.sprite = sprite;
@@ -160,7 +160,7 @@ class Enemy {
 
   draw() {
     this.update();
-    if (this.tick % 150 == 0) {
+    if (this.tick % 2 == 0) {
       this.move();
     }
     image(this.sprite, this.isometric_x, this.isometric_y, 56, 56);
