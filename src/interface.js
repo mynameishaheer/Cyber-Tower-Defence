@@ -85,7 +85,13 @@ class Interface {
       fill("black");
 
       textSize(18);
-      text("Virus.", 30, 425);
+      text(
+        "Viruses are harmful software programs that can infect and\ndamage computer systems. To protect your computer, use\nantivirus software, keep your system and software updated," +
+          " be\ncautious online, enable firewalls, use secure web browsers,\n" +
+          "practice safe email habits, and regularly back up your files.\n\nPrevention is crucial in stopping viruses and safeguarding\nyour computer and data.",
+        30,
+        425
+      );
     }
   }
 
@@ -108,7 +114,13 @@ class Interface {
       fill("black");
 
       textSize(18);
-      text("Trojan", 30, 525);
+      text(
+        "Trojans are malicious software programs that disguise themselves\nas legitimate files or applications, tricking users into executing\nthem." +
+          " To protect your computer from Trojans, it is important to\nmaintain strong firewall protection and practicing safe browsing\n" +
+          "habits.\n\nVigilance and proactive measures are essential in defending your\ncomputer and data against Trojans.",
+        30,
+        525
+      );
     }
   }
 
@@ -131,7 +143,14 @@ class Interface {
       fill("black");
 
       textSize(18);
-      text("Worms.", 30, 625);
+      text(
+        "Worms are self-replicating malware that spread rapidly across\ncomputer networks. They exploit vulnerabilities to infect other\n" +
+          "systems and can cause extensive damage by consuming network\nresources. To safeguard your computer, deploy an Intrusion\nDetection System (IDS)" +
+          "to detect and block suspicious network\nactivity. \nIt is crucial to keep your software up to date and follow\nstrong network security practices to " +
+          "prevent worm infections.",
+        30,
+        625
+      );
     }
   }
 
@@ -154,7 +173,14 @@ class Interface {
       fill("black");
 
       textSize(18);
-      text("Ransomware", 130, 425);
+      text(
+        "Ransomware is malicious software that encrypts your files and\ndemands a ransom for their release. To protect against\nransomware," +
+          "regularly back up your files and store them in a\nsecure location. Keep your systems and software up to date, use\nreliable antivirus software," +
+          "and exercise caution when opening\nemail attachments or clicking on unknown links.\nBy staying vigilant and prepared, you can defend against\n" +
+          "ransomware attacks and safeguard your valuable data.",
+        130,
+        425
+      );
     }
   }
 
@@ -177,7 +203,14 @@ class Interface {
       fill("black");
 
       textSize(18);
-      text("DDOS", 130, 525);
+      text(
+        "DDoS attacks overload a target system or network, causing\nservice disruptions. To defend against DDoS attacks, use network\nsegmentation" +
+          "to isolate critical components. This prevents the\nentire network from being affected. Additionally, deploy\nspecialized tools like" +
+          "Intrusion Detection Systems (IDS) to detect\nand mitigate DDoS attacks in real-time.\nBy promptly identifying and isolating malicious traffic," +
+          "you can\nmaintain service availability and protect from DDoS disruptions.",
+        130,
+        525
+      );
     }
   }
 
