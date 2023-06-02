@@ -206,7 +206,7 @@ class Interface {
   }
 
   drawAntiVirus() {
-    image(antivirusSprite, width - 200, 100, 28, 57);
+    image(aVSprites[0], width - 200, 100);
 
     if (
       mouseX >= width - 200 &&
@@ -236,7 +236,7 @@ class Interface {
   drawAntivirusOnMouse() {
     if (this.selected == "antivirus") {
       cursor("grabbing");
-      image(antivirusSprite, mouseX - 14, mouseY - 28, 28, 57);
+      image(aVSprites[0], mouseX - 14, mouseY - 28);
     }
   }
 
@@ -299,17 +299,31 @@ class Interface {
 
       if (map.grid[nearestTile.j][nearestTile.i] === 33) {
         if (selectedTile.isOccupied === false) {
-          image(map.selectedTileImageNotOccupiedY, nearestTileX, nearestTileY);
+          image(aVSprites[4], nearestTileX , nearestTileY);
         } else {
-          image(map.selectedTileImageOccupiedY, nearestTileX, nearestTileY);
+          image(aVSprites[5], nearestTileX , nearestTileY);
         }
       } else if (map.grid[nearestTile.j][nearestTile.i] === 34) {
         if (selectedTile.isOccupied === false) {
-          image(map.selectedTileImageNotOccupiedX, nearestTileX, nearestTileY);
+          image(aVSprites[1], nearestTileX, nearestTileY);
         } else {
-          image(map.selectedTileImageOccupiedX, nearestTileX, nearestTileY);
+          image(aVSprites[2], nearestTileX, nearestTileY);
         }
       }
+
+      // if (map.grid[nearestTile.j][nearestTile.i] === 33) {
+      //   if (selectedTile.isOccupied === false) {
+      //     image(map.selectedTileImageNotOccupiedY, nearestTileX, nearestTileY);
+      //   } else {
+      //     image(map.selectedTileImageOccupiedY, nearestTileX, nearestTileY);
+      //   }
+      // } else if (map.grid[nearestTile.j][nearestTile.i] === 34) {
+      //   if (selectedTile.isOccupied === false) {
+      //     image(map.selectedTileImageNotOccupiedX, nearestTileX, nearestTileY);
+      //   } else {
+      //     image(map.selectedTileImageOccupiedX, nearestTileX, nearestTileY);
+      //   }
+      // }
     }
   }
 

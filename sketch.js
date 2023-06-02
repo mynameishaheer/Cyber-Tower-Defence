@@ -10,7 +10,10 @@ let spywareSprite;
 let ransomwareSprite;
 let ddosSprite;
 
-let antivirusSprite;
+let antivirusSpriteRight;
+let antivirusSpriteLeft;
+
+let aVSprites = [];
 
 let map;
 let network;
@@ -81,7 +84,16 @@ function loadAssets() {
   interfaceLargeFont = loadFont("assets/fonts/JLSSpaceGothicR_NC.otf");
   interfaceSmallFont = loadFont("assets/fonts/JLSDataGothicC_NC.otf");
 
-  antivirusSprite = loadImage("./assets/sprites/tools/antivirusSprite.png");
+  for (let i = 1; i < 7; i++) {
+    aVSprites.push(loadImage(`./assets/sprites/tools/antivirusSprite${i}.png`));
+  }
+
+  // antivirusSpriteRight = loadImage(
+  //   "./assets/sprites/tools/antivirusSpriteRight.png"
+  // );
+  // antivirusSpriteLeft = loadImage(
+  //   "./assets/sprites/tools/antivirusSpriteLeft.png"
+  // );
 }
 function createMap() {
   map = new Map();
