@@ -13,12 +13,13 @@ class Tile {
     this.isometric_y = isoY;
     this.sprite = sprite;
 
-    randomNum = Math.floor(Math.random() * 10) + 1;
-    if (randomNum < 4) {
-      this.isOccupied = false;
-    } else {
-      this.isOccupied = true;
-    }
+    this.isOccupied = false;
+    // randomNum = Math.floor(Math.random() * 10) + 1;
+    // if (randomNum < 4) {
+    //   this.isOccupied = false;
+    // } else {
+    //   this.isOccupied = true;
+    // }
   }
 }
 
