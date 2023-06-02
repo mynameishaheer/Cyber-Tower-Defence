@@ -1,5 +1,5 @@
 class Defense {
-  constructor(x, y, isoX, isoY, lane, hp, sprite, type) {
+  constructor(x, y, isoX, isoY, lane, hp, sprite, type, price) {
     this.x = x;
     this.y = y;
     this.isometric_x = isoX;
@@ -9,7 +9,7 @@ class Defense {
     this.size = 64;
     this.sprite = sprite;
     this.type = type;
-    this.price = 0;
+    this.price = 50;
   }
 
   updateIsometricPosition() {

@@ -3,6 +3,8 @@ TILE_WIDTH = 100;
 TILE_HEIGHT = 50;
 GRID_SIZE = 15;
 
+let selectedTile = null;
+
 class Interface {
   constructor() {
     this.selected = "none";
@@ -245,6 +247,8 @@ class Interface {
       this.selected = "none";
     }
     if (this.selected == "antivirus") {
+      if (mouseIsPressed != true) {
+      }
       cursor("grabbing");
       this.drawAntivirusOnMouse();
     }
@@ -291,7 +295,7 @@ class Interface {
       text("nearestTileX: " + nearestTileX, 200, 380);
       text("nearestTileY: " + nearestTileY, 200, 400);
 
-      let selectedTile = map.tiles.find(
+      selectedTile = map.tiles.find(
         (tile) => tile.x === nearestTile.i && tile.y === nearestTile.j
       );
 
@@ -299,15 +303,15 @@ class Interface {
 
       if (map.grid[nearestTile.j][nearestTile.i] === 33) {
         if (selectedTile.isOccupied === false) {
-          image(aVSprites[4], nearestTileX , nearestTileY);
+          image(aVSprites[4], nearestTileX - 25, nearestTileY - 12);
         } else {
-          image(aVSprites[5], nearestTileX , nearestTileY);
+          image(aVSprites[5], nearestTileX - 25, nearestTileY - 12);
         }
       } else if (map.grid[nearestTile.j][nearestTile.i] === 34) {
         if (selectedTile.isOccupied === false) {
-          image(aVSprites[1], nearestTileX, nearestTileY);
+          image(aVSprites[1], nearestTileX + 25, nearestTileY - 12);
         } else {
-          image(aVSprites[2], nearestTileX, nearestTileY);
+          image(aVSprites[2], nearestTileX + 25, nearestTileY - 12);
         }
       }
 
