@@ -65,8 +65,19 @@ function draw() {
       enemies[e].draw();
     }
 
-    //* Draw the central network
+    for (d in defenses) {
+      defenses[d].draw();
+    }
+
     interface.draw();
+
+    for (towerIndex in interface.towers) {
+      const tower = interface.towers[towerIndex];
+      if (tower !== null) {
+        tower.draw();
+      }
+    }
+
     network.draw_grid();
 
     //* Control the framework

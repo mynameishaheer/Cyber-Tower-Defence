@@ -4,10 +4,17 @@ TILE_HEIGHT = 50;
 GRID_SIZE = 15;
 
 let selectedTile = null;
+let isDragging = false;
+
+var dir = "none";
 
 class Interface {
   constructor() {
     this.selected = "none";
+    this.towers = [];
+    this.isDragging = false;
+    this.passToTowerX = null;
+    this.passToTowerY = null;
   }
 
   //* General Interface Functions
@@ -74,13 +81,7 @@ class Interface {
       fill("black");
 
       textSize(18);
-      text(
-        "Viruses are harmful software programs that can infect and\ndamage computer systems. To protect your computer, use\nantivirus software, keep your system and software updated," +
-          " be\ncautious online, enable firewalls, use secure web browsers,\n" +
-          "practice safe email habits, and regularly back up your files.\n\nPrevention is crucial in stopping viruses and safeguarding\nyour computer and data.",
-        30,
-        425
-      );
+      text("Virus.", 30, 425);
     }
   }
 
@@ -103,13 +104,7 @@ class Interface {
       fill("black");
 
       textSize(18);
-      text(
-        "Trojans are malicious software programs that disguise themselves\nas legitimate files or applications, tricking users into executing\nthem." +
-          " To protect your computer from Trojans, it is important to\nmaintain strong firewall protection and practicing safe browsing\n" +
-          "habits.\n\nVigilance and proactive measures are essential in defending your\ncomputer and data against Trojans.",
-        30,
-        525
-      );
+      text("Trojan", 30, 525);
     }
   }
 
@@ -132,14 +127,7 @@ class Interface {
       fill("black");
 
       textSize(18);
-      text(
-        "Worms are self-replicating malware that spread rapidly across\ncomputer networks. They exploit vulnerabilities to infect other\n" +
-          "systems and can cause extensive damage by consuming network\nresources. To safeguard your computer, deploy an Intrusion\nDetection System (IDS)" +
-          "to detect and block suspicious network\nactivity. \nIt is crucial to keep your software up to date and follow\nstrong network security practices to " +
-          "prevent worm infections.",
-        30,
-        625
-      );
+      text("Worms.", 30, 625);
     }
   }
 
@@ -162,14 +150,7 @@ class Interface {
       fill("black");
 
       textSize(18);
-      text(
-        "Ransomware is malicious software that encrypts your files and\ndemands a ransom for their release. To protect against\nransomware," +
-          "regularly back up your files and store them in a\nsecure location. Keep your systems and software up to date, use\nreliable antivirus software," +
-          "and exercise caution when opening\nemail attachments or clicking on unknown links.\nBy staying vigilant and prepared, you can defend against\n" +
-          "ransomware attacks and safeguard your valuable data.",
-        130,
-        425
-      );
+      text("Ransomware", 130, 425);
     }
   }
 
@@ -192,14 +173,7 @@ class Interface {
       fill("black");
 
       textSize(18);
-      text(
-        "DDoS attacks overload a target system or network, causing\nservice disruptions. To defend against DDoS attacks, use network\nsegmentation" +
-          "to isolate critical components. This prevents the\nentire network from being affected. Additionally, deploy\nspecialized tools like" +
-          "Intrusion Detection Systems (IDS) to detect\nand mitigate DDoS attacks in real-time.\nBy promptly identifying and isolating malicious traffic," +
-          "you can\nmaintain service availability and protect from DDoS disruptions.",
-        130,
-        525
-      );
+      text("DDOS", 130, 525);
     }
   }
 
@@ -626,9 +600,9 @@ class Interface {
       (map.grid[nearestTile.j][nearestTile.i] === 33 ||
         map.grid[nearestTile.j][nearestTile.i] === 34)
     ) {
-      let nearestTileX =
+      nearestTileX =
         map.x_start + (nearestTile.i - nearestTile.j) * (TILE_WIDTH / 2);
-      let nearestTileY =
+      nearestTileY =
         map.y_start + (nearestTile.i + nearestTile.j) * (TILE_HEIGHT / 2);
 
       // text("nearestTileX: " + nearestTileX, 200, 380);
@@ -640,13 +614,29 @@ class Interface {
 
       // text("isOccupied: " + selectedTile.isOccupied, 200, 420);
 
+      // text(
+      //   "nearestTile X isometric Val: " + selectedTile.isometric_x,
+      //   200,
+      //   480
+      // );
+      // text(
+      //   "nearestTile Y isometric Val: " + selectedTile.isometric_y,
+      //   200,
+      //   500
+      // );
+
+      // text("nearestTile X: " + nearestTile.i, 200, 520);
+      // text("nearestTile Y: " + nearestTile.j, 200, 540);
+
       if (map.grid[nearestTile.j][nearestTile.i] === 33) {
+        //top and bttom
         if (selectedTile.isOccupied === false) {
           image(aVSprites[4], nearestTileX - 25, nearestTileY - 12);
         } else {
           image(aVSprites[5], nearestTileX - 25, nearestTileY - 12);
         }
       } else if (map.grid[nearestTile.j][nearestTile.i] === 34) {
+        //left and right
         if (selectedTile.isOccupied === false) {
           image(aVSprites[1], nearestTileX + 25, nearestTileY - 12);
         } else {
@@ -654,19 +644,39 @@ class Interface {
         }
       }
 
-      // if (map.grid[nearestTile.j][nearestTile.i] === 33) {
-      //   if (selectedTile.isOccupied === false) {
-      //     image(map.selectedTileImageNotOccupiedY, nearestTileX, nearestTileY);
-      //   } else {
-      //     image(map.selectedTileImageOccupiedY, nearestTileX, nearestTileY);
-      //   }
-      // } else if (map.grid[nearestTile.j][nearestTile.i] === 34) {
-      //   if (selectedTile.isOccupied === false) {
-      //     image(map.selectedTileImageNotOccupiedX, nearestTileX, nearestTileY);
-      //   } else {
-      //     image(map.selectedTileImageOccupiedX, nearestTileX, nearestTileY);
-      //   }
-      // }
+      if (
+        nearestTileX >= 374 &&
+        nearestTileX <= 724 &&
+        nearestTileY >= 425 &&
+        nearestTileY <= 600
+      ) {
+        dir = "left";
+      } else if (
+        nearestTileX >= 374 &&
+        nearestTileX <= 724 &&
+        nearestTileY >= 200 &&
+        nearestTileY <= 375
+      ) {
+        dir = "top";
+      } else if (
+        nearestTileX > 874 &&
+        nearestTileX <= 1174 &&
+        nearestTileY >= 200 &&
+        nearestTileY <= 375
+      ) {
+        dir = "right";
+      } else if (
+        nearestTileX >= 824 &&
+        nearestTileX <= 1174 &&
+        nearestTileY >= 425 &&
+        nearestTileY <= 600
+      ) {
+        dir = "bottom";
+      } else {
+        dir = "none";
+      }
+
+      // text("Direction is: " + dir, 200, 440);
     }
   }
 
@@ -696,6 +706,45 @@ class Interface {
     //?
 
     this.snap_to_nearest_road();
+    text(this.isDragging, 200, 220);
     this.update();
+  }
+}
+
+function mouseReleased() {
+  console.log("mouse released");
+  if (
+    interface.selected === "antivirus" &&
+    selectedTile != null &&
+    selectedTile.isOccupied === false
+  ) {
+    if (selectedTile.isOccupied === false) {
+      let spriteIndex = 3;
+      if (dir === "left" || dir === "right") {
+        spriteIndex = 0;
+        interface.towers.push(
+          new Defense(
+            nearestTileX + 25,
+            nearestTileY - 12,
+            aVSprites[spriteIndex],
+            "antivirus",
+            50
+          )
+        );
+      } else {
+        spriteIndex = 3;
+        interface.towers.push(
+          new Defense(
+            nearestTileX - 25,
+            nearestTileY - 12,
+            aVSprites[spriteIndex],
+            "antivirus",
+            50
+          )
+        );
+      }
+
+      selectedTile.isOccupied = true;
+    }
   }
 }
