@@ -21,6 +21,7 @@ let interfaceSmallFont;
 
 let enemies = [];
 let enemiesKilled = 0;
+let softwares = [];
 // let enemiesEscaped = 0;
 
 function setup() {

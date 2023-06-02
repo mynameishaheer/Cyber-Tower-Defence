@@ -260,8 +260,6 @@ class Interface {
     let mouseIsoX = mouseGridY + mouseGridX;
     let mouseIsoY = mouseGridY - mouseGridX;
 
-    console.log("mouseX:", mouseX, "mouseIsoX:", mouseIsoX);
-    console.log("mouseY:", mouseY, "mouseIsoY:", mouseIsoY);
     text("mouseX: " + mouseX, 200, 300);
     text("mouseY: " + mouseY, 200, 320);
     text("mouseIsoX: " + mouseIsoX, 200, 340);
@@ -290,14 +288,27 @@ class Interface {
       let nearestTileY =
         map.y_start + (nearestTile.i + nearestTile.j) * (TILE_HEIGHT / 2);
 
-      console.log("nearestTileX:", nearestTileX, "nearestTileY:", nearestTileY);
       text("nearestTileX: " + nearestTileX, 200, 380);
       text("nearestTileY: " + nearestTileY, 200, 400);
 
+      let selectedTile = map.tiles.find(
+        (tile) => tile.x === nearestTile.i && tile.y === nearestTile.j
+      );
+
+      text("isOccupied: " + selectedTile.isOccupied, 200, 420);
+
       if (map.grid[nearestTile.j][nearestTile.i] === 33) {
-        image(map.selectedTileImageY, nearestTileX, nearestTileY);
+        if (selectedTile.isOccupied === false) {
+          image(map.selectedTileImageNotOccupiedY, nearestTileX, nearestTileY);
+        } else {
+          image(map.selectedTileImageOccupiedY, nearestTileX, nearestTileY);
+        }
       } else if (map.grid[nearestTile.j][nearestTile.i] === 34) {
-        image(map.selectedTileImageX, nearestTileX, nearestTileY);
+        if (selectedTile.isOccupied === false) {
+          image(map.selectedTileImageNotOccupiedX, nearestTileX, nearestTileY);
+        } else {
+          image(map.selectedTileImageOccupiedX, nearestTileX, nearestTileY);
+        }
       }
     }
   }

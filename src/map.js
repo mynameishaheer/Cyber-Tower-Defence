@@ -3,6 +3,25 @@ TILE_WIDTH = 100;
 TILE_HEIGHT = 50;
 MAX_HEIGHT = 80;
 
+var randomNum = 0;
+
+class Tile {
+  constructor(x, y, isoX, isoY, sprite) {
+    this.x = x;
+    this.y = y;
+    this.isometric_x = isoX;
+    this.isometric_y = isoY;
+    this.sprite = sprite;
+
+    randomNum = Math.floor(Math.random() * 10) + 1;
+    if (randomNum < 4) {
+      this.isOccupied = false;
+    } else {
+      this.isOccupied = true;
+    }
+  }
+}
+
 class Map {
   constructor() {
     this.grid = [
@@ -24,35 +43,58 @@ class Map {
     ];
 
     this.tile_images = [];
+    this.tiles = [];
 
     this.x_start = 0;
     this.y_start = 0;
-    this.selectedTileImageX = null;
-    this.selectedTileImageY = null;
+    this.selectedTileImageOccupiedX = null;
+    this.selectedTileImageOccupiedY = null;
+    this.selectedTileImageNotOccupiedX = null;
+    this.selectedTileImageNotOccupiedY = null;
   }
 
   draw_grid() {
     this.x_start = wWidth / 2 - TILE_WIDTH / 2;
     this.y_start = 50;
-    for (let i = 0; i < GRID_SIZE; i++) {
-      for (let j = 0; j < GRID_SIZE; j++) {
-        this.draw_tile(this.tile_images[this.grid[j][i]], i, j);
-      }
+    for (let tile of this.tiles) {
+      this.draw_tile(tile.sprite, tile.x, tile.y);
     }
   }
 
-  draw_tile(img, x, y) {
+  draw_tile(sprite, x, y) {
     let x_screen = this.x_start + ((x - y) * TILE_WIDTH) / 2;
     let y_screen = this.y_start + ((x + y) * TILE_HEIGHT) / 2;
-    let z_offset = MAX_HEIGHT - img.height;
-    image(img, x_screen, y_screen + z_offset);
+    let z_offset = MAX_HEIGHT - sprite.height;
+    image(sprite, x_screen, y_screen + z_offset);
   }
 
   setup() {
     for (let i = 0; i <= 39; i++) {
       this.tile_images.push(loadImage("./assets/tiles/tile-" + i + ".png"));
-      this.selectedTileImageX = loadImage("./assets/tiles/tile-x-red.png");
-      this.selectedTileImageY = loadImage("./assets/tiles/tile-y-red.png");
+    }
+    this.selectedTileImageOccupiedX = loadImage(
+      "./assets/tiles/tile-x-red.png"
+    );
+    this.selectedTileImageOccupiedY = loadImage(
+      "./assets/tiles/tile-y-red.png"
+    );
+
+    this.selectedTileImageNotOccupiedX = loadImage(
+      "./assets/tiles/tile-x-green.png"
+    );
+    this.selectedTileImageNotOccupiedY = loadImage(
+      "./assets/tiles/tile-y-green.png"
+    );
+
+    for (let i = 0; i < GRID_SIZE; i++) {
+      for (let j = 0; j < GRID_SIZE; j++) {
+        let x = i;
+        let y = j;
+        let sprite = this.tile_images[this.grid[j][i]];
+        let isoX = j + i;
+        let isoY = j - i;
+        this.tiles.push(new Tile(x, y, isoX, isoY, sprite));
+      }
     }
   }
 }
