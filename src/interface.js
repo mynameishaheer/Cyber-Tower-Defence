@@ -4,12 +4,9 @@ TILE_HEIGHT = 50;
 GRID_SIZE = 15;
 
 let selectedTile = null;
-let isDragging = false;
 
 var dir = "none";
 let isDragging = false;
-
-var dir = "none";
 
 class Interface {
   constructor() {
@@ -543,13 +540,6 @@ class Interface {
     }
   }
 
-  drawAntivirusOnMouse() {
-    if (this.selected == "antivirus") {
-      cursor("grabbing");
-      image(aVSprites[0], mouseX - 14, mouseY - 28);
-    }
-  }
-
   drawMoney() {
     fill("white");
     rect(width - 300, wHeight - 160, 280, 100, 20);
@@ -682,8 +672,6 @@ class Interface {
       } else {
         dir = "none";
       }
-
-      text("Direction is: " + dir, 200, 440);
     }
   }
 
@@ -705,34 +693,6 @@ class Interface {
       cursor("grabbing");
     } else {
       cursor("grab");
-    }
-  }
-
-  drawAntiVirus() {
-    image(aVSprites[0], width - 200, 100);
-
-    if (
-      mouseX >= width - 200 &&
-      mouseX <= width - 172 &&
-      mouseY >= 100 &&
-      mouseY <= 157
-    ) {
-      fill(0, 0, 0, 0);
-      stroke("white");
-      rect(width - 214, 57 + 28, 60, 80);
-      noStroke();
-      fill("black");
-      cursor("grab");
-
-      if (mouseIsPressed) {
-        cursor("grabbing");
-        this.selected = "antivirus";
-      } else {
-        cursor("grab");
-        this.selected = "none";
-      }
-    } else {
-      cursor("default");
     }
   }
 
@@ -782,7 +742,6 @@ class Interface {
     //?
 
     this.snap_to_nearest_road();
-    text(this.isDragging, 200, 220);
     this.update();
   }
 }

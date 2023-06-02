@@ -4,7 +4,7 @@ class Enemy {
     this.y = y;
     this.isometric_x = isoX;
     this.isometric_y = isoY;
-    this.hp = 500;
+    this.hp = hp;
     this.side = side;
     this.lane = lane;
     this.speed = 0.01;
