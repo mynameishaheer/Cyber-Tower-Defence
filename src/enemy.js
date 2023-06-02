@@ -68,18 +68,21 @@ class Enemy {
         case 1:
           if (this.isometric_x >= 650 && this.isometric_y <= 425) {
             this.moveDown();
+            network.hp--;
             this.hp--;
           }
           break;
         case 2:
           if (this.isometric_x >= 700 && this.isometric_y <= 450) {
             this.moveDown();
+            network.hp--;
             this.hp--;
           }
           break;
         case 3:
           if (this.isometric_x >= 750 && this.isometric_y <= 475) {
             this.moveDown();
+            network.hp--;
             this.hp--;
           }
           break;
@@ -90,18 +93,21 @@ class Enemy {
         case 1:
           if (this.isometric_x >= 750 && this.isometric_y >= 325) {
             this.moveLeft();
+            network.hp--;
             this.hp--;
           }
           break;
         case 2:
           if (this.isometric_x >= 700 && this.isometric_y >= 350) {
             this.moveLeft();
+            network.hp--;
             this.hp--;
           }
           break;
         case 3:
           if (this.isometric_x >= 650 && this.isometric_y >= 375) {
             this.moveLeft();
+            network.hp--;
             this.hp--;
           }
           break;
@@ -112,18 +118,21 @@ class Enemy {
         case 1:
           if (this.isometric_x <= 950 && this.isometric_y >= 375) {
             this.moveUp();
+            network.hp--;
             this.hp--;
           }
           break;
         case 2:
           if (this.isometric_x <= 900 && this.isometric_y >= 350) {
             this.moveUp();
+            network.hp--;
             this.hp--;
           }
           break;
         case 3:
           if (this.isometric_x <= 850 && this.isometric_y >= 325) {
             this.moveUp();
+            network.hp--;
             this.hp--;
           }
           break;
@@ -134,18 +143,21 @@ class Enemy {
         case 1:
           if (this.isometric_x <= 850 && this.isometric_y <= 475) {
             this.moveRight();
+            network.hp--;
             this.hp--;
           }
           break;
         case 2:
           if (this.isometric_x <= 900 && this.isometric_y <= 450) {
             this.moveRight();
+            network.hp--;
             this.hp--;
           }
           break;
         case 3:
           if (this.isometric_x <= 950 && this.isometric_y <= 425) {
             this.moveRight();
+            network.hp--;
             this.hp--;
           }
           break;
