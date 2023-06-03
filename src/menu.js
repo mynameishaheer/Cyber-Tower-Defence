@@ -7,13 +7,13 @@ class Menu {
     textFont(interfaceLargeFont);
     textSize(48);
     fill(147, 186, 86, 255);
-    text("Cyber Tower Defence", windowWidth / 2 - 220, wHeight / 2 - 180);
+    //   text("Cyber Tower Defence", windowWidth / 2 - 320, wHeight / 2 - 180);
     fill("black");
     textFont(interfaceSmallFont);
     textSize(24);
     text(
-      "Defend the network against the cyber attacks",
-      windowWidth / 2 - 185,
+      "Hover over the items to learn more about them before you begin",
+      windowWidth / 2 - 345,
       wHeight / 2 - 140
     );
   }
@@ -21,8 +21,8 @@ class Menu {
   async drawButtons() {
     noStroke();
     if (
-      mouseX > windowWidth / 2 - 200 &&
-      mouseX < windowWidth / 2 + 200 &&
+      mouseX > windowWidth / 2 - 300 &&
+      mouseX < windowWidth / 2 + 300 &&
       mouseY > wHeight / 2 - 100 &&
       mouseY < wHeight / 2 - 30
     ) {
@@ -37,11 +37,11 @@ class Menu {
     } else {
       fill(147, 186, 86, 255);
     }
-    rect(windowWidth / 2 - 200, wHeight / 2 - 100, 400, 70, 18);
+    rect(windowWidth / 2 - 300, wHeight / 2 - 100, 400, 70, 18);
     fill("white");
     textFont(interfaceLargeFont);
     textSize(32);
-    text("Play", windowWidth / 2 - 30, wHeight / 2 - 55);
+    text("Play", windowWidth / 2 - 130, wHeight / 2 - 55);
   }
   draw() {
     this.drawTitle();

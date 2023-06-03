@@ -87,19 +87,20 @@ class Interface {
 
     if (mouseX >= 25 && mouseX <= 81 && mouseY >= 630 && mouseY <= 736) {
       fill(0, 0, 0, 100);
-      rect(25 - 5, 400 - 5, 410, 210, 20);
+      rect(25 - 5, 400 - 5, 410, 280, 20);
       fill("black");
 
       fill("white");
       noStroke();
-      rect(25, 400, 400, 200, 20);
+      rect(25, 400, 400, 270, 20);
       fill("black");
 
       textSize(18);
       text(
         "Viruses are harmful software programs that can infect and\ndamage computer systems. To protect your computer, use\nantivirus software, keep your system and software updated," +
           " be\ncautious online, enable firewalls, use secure web browsers,\n" +
-          "practice safe email habits, and regularly back up your files.\n\nPrevention is crucial in stopping viruses and safeguarding\nyour computer and data.",
+          "practice safe email habits, and regularly back up your files.\n\nPrevention is crucial in stopping viruses and safeguarding\nyour computer and data." +
+          "\n\n HP: 5                     Damage: 3 \n Reward: $30         Loss: $120",
         30,
         425
       );
@@ -116,19 +117,20 @@ class Interface {
 
     if (mouseX >= 25 && mouseX <= 81 && mouseY >= 730 && mouseY <= 836) {
       fill(0, 0, 0, 100);
-      rect(25 - 5, 500 - 5, 410, 210, 20);
+      rect(25 - 5, 500 - 5, 410, 280, 20);
       fill("black");
 
       fill("white");
       noStroke();
-      rect(25, 500, 400, 200, 20);
+      rect(25, 500, 400, 270, 20);
       fill("black");
 
       textSize(18);
       text(
         "Trojans are malicious software programs that disguise themselves\nas legitimate files or applications, tricking users into executing\nthem." +
           " To protect your computer from Trojans, it is important to\nmaintain strong firewall protection and practicing safe browsing\n" +
-          "habits.\n\nVigilance and proactive measures are essential in defending your\ncomputer and data against Trojans.",
+          "habits.\n\nVigilance and proactive measures are essential in defending your\ncomputer and data against Trojans." +
+          "\n\n HP: 4                     Damage: 3 \n Reward: $20         Loss: $90",
         30,
         525
       );
@@ -145,12 +147,12 @@ class Interface {
 
     if (mouseX >= 25 && mouseX <= 81 && mouseY >= 830 && mouseY <= 936) {
       fill(0, 0, 0, 100);
-      rect(25 - 5, 600 - 5, 410, 210, 20);
+      rect(25 - 5, 600 - 5, 410, 280, 20);
       fill("black");
 
       fill("white");
       noStroke();
-      rect(25, 600, 400, 200, 20);
+      rect(25, 600, 400, 270, 20);
       fill("black");
 
       textSize(18);
@@ -158,7 +160,8 @@ class Interface {
         "Worms are self-replicating malware that spread rapidly across\ncomputer networks. They exploit vulnerabilities to infect other\n" +
           "systems and can cause extensive damage by consuming network\nresources. To safeguard your computer, deploy an Intrusion\nDetection System (IDS)" +
           "to detect and block suspicious network\nactivity. \nIt is crucial to keep your software up to date and follow\nstrong network security practices to " +
-          "prevent worm infections.",
+          "prevent worm infections." +
+          "\n\n HP: 3                     Damage: 3 \n Reward: $15          Loss: $70",
         30,
         625
       );
@@ -175,12 +178,12 @@ class Interface {
 
     if (mouseX >= 125 && mouseX <= 181 && mouseY >= 630 && mouseY <= 736) {
       fill(0, 0, 0, 100);
-      rect(125 - 5, 400 - 5, 410, 210, 20);
+      rect(125 - 5, 400 - 5, 410, 280, 20);
       fill("black");
 
       fill("white");
       noStroke();
-      rect(125, 400, 400, 200, 20);
+      rect(125, 400, 400, 270, 20);
       fill("black");
 
       textSize(18);
@@ -188,7 +191,8 @@ class Interface {
         "Ransomware is malicious software that encrypts your files and\ndemands a ransom for their release. To protect against\nransomware," +
           "regularly back up your files and store them in a\nsecure location. Keep your systems and software up to date, use\nreliable antivirus software," +
           "and exercise caution when opening\nemail attachments or clicking on unknown links.\nBy staying vigilant and prepared, you can defend against\n" +
-          "ransomware attacks and safeguard your valuable data.",
+          "ransomware attacks and safeguard your valuable data." +
+          "\n\n HP: 4                     Damage: 3 \n Reward: $20          Loss: $100",
         130,
         425
       );
@@ -205,12 +209,12 @@ class Interface {
 
     if (mouseX >= 125 && mouseX <= 181 && mouseY >= 730 && mouseY <= 836) {
       fill(0, 0, 0, 100);
-      rect(125 - 5, 500 - 5, 410, 210, 20);
+      rect(125 - 5, 500 - 5, 410, 280, 20);
       fill("black");
 
       fill("white");
       noStroke();
-      rect(125, 500, 400, 200, 20);
+      rect(125, 500, 400, 270, 20);
       fill("black");
 
       textSize(18);
@@ -218,7 +222,8 @@ class Interface {
         "DDoS attacks overload a target system or network, causing\nservice disruptions. To defend against DDoS attacks, use network\nsegmentation" +
           "to isolate critical components. This prevents the\nentire network from being affected. Additionally, deploy\nspecialized tools like" +
           "Intrusion Detection Systems (IDS) to detect\nand mitigate DDoS attacks in real-time.\nBy promptly identifying and isolating malicious traffic," +
-          "you can\nmaintain service availability and protect from DDoS disruptions.",
+          "you can\nmaintain service availability and protect from DDoS disruptions." +
+          "\n\n HP: 2                     Damage: 3 \n Reward: $10         Loss: $50",
         130,
         525
       );
@@ -235,12 +240,12 @@ class Interface {
 
     if (mouseX >= 125 && mouseX <= 181 && mouseY >= 830 && mouseY <= 936) {
       fill(0, 0, 0, 100);
-      rect(125 - 5, 600 - 5, 410, 210, 20);
+      rect(125 - 5, 600 - 5, 410, 280, 20);
       fill("black");
 
       fill("white");
       noStroke();
-      rect(125, 600, 400, 200, 20);
+      rect(125, 600, 400, 270, 20);
       fill("black");
 
       textSize(18);
@@ -248,7 +253,8 @@ class Interface {
         "Spyware is a type of malicious software that secretly collects\ninformation about a user's activities and sends it to unauthorized\nparties." +
           "Protect your computer from spyware by using reliable\nantivirus software and enabling encryption. Being cautious while\ndownloading files and" +
           " avoiding suspicious websites can also help\nprevent spyware infections.\nStay vigilant and regularly scan your system to detect and remove\nany" +
-          "potential spyware threats.",
+          "potential spyware threats.\n\n HP" +
+          "\n\n HP: 3                     Damage: 3 \n Reward: $20         Loss: $80",
         130,
         625
       );
@@ -296,19 +302,20 @@ class Interface {
       fill("black");
       cursor("grab");
       fill(0, 0, 0, 100);
-      rect(width - 740, 200, 410, 210, 20);
+      rect(width - 740, 200, 410, 280, 20);
       fill("black");
 
       fill("white");
       noStroke();
-      rect(width - 735, 205, 400, 200, 20);
+      rect(width - 735, 205, 400, 270, 20);
       fill("black");
 
       textSize(18);
       text(
         "IDS (Intrusion Detection System) is a vital security tool that\ndetects and alerts against unauthorized network activities." +
           "It\nkeeps a watchful eye on network traffic, identifying suspicious\npatterns and potential intrusions.\n\nWith IDS, you can proactively" +
-          "safeguard your network, preventing\nunauthorized access and maintaining the security of your systems",
+          "safeguard your network, preventing\nunauthorized access and maintaining the security of your systems" +
+          "\n\n HP: 10\nCost: $200",
         width - 730,
         225
       );
@@ -347,12 +354,12 @@ class Interface {
       fill("black");
       cursor("grab");
       fill(0, 0, 0, 100);
-      rect(width - 740, 300, 410, 210, 20);
+      rect(width - 740, 300, 410, 280, 20);
       fill("black");
 
       fill("white");
       noStroke();
-      rect(width - 735, 305, 400, 200, 20);
+      rect(width - 735, 305, 400, 270, 20);
       fill("black");
 
       textSize(18);
@@ -360,7 +367,8 @@ class Interface {
         "Firewalls act as a protective barrier between your computer\nnetwork and potential threats from the internet." +
           "They monitor and\ncontrol incoming and outgoing network traffic, filtering out\nmalicious connections and unauthorized" +
           "access attempts.\n\nFirewalls play a crucial role in safeguarding your system,\npreventing unauthorized access and ensuring" +
-          "the security\nof your network and data.",
+          "the security\nof your network and data." +
+          "\n\n HP: 15\nCost: $150",
         width - 730,
         325
       );
@@ -399,12 +407,12 @@ class Interface {
       fill("black");
       cursor("grab");
       fill(0, 0, 0, 100);
-      rect(width - 740, 400, 410, 210, 20);
+      rect(width - 740, 400, 410, 280, 20);
       fill("black");
 
       fill("white");
       noStroke();
-      rect(width - 735, 405, 400, 200, 20);
+      rect(width - 735, 405, 400, 270, 20);
       fill("black");
 
       textSize(18);
@@ -412,7 +420,8 @@ class Interface {
         "Network segmentation involves dividing a computer network\ninto smaller subnetworks, creating isolated\nsegments that" +
           " enhance security and control. By implementing\nnetwork segmentation, you can separate sensitive data and limit\naccess to" +
           " specific areas, reducing the potential impact of a breach\nand preventing lateral movement within the network.\nNetwork segmentation" +
-          "improves the resilience of your network\nagainst cyber threats.",
+          "improves the resilience of your network\nagainst cyber threats." +
+          "\n\n HP: 15\nCost: $250",
         width - 730,
         425
       );
@@ -451,12 +460,12 @@ class Interface {
       fill("black");
       cursor("grab");
       fill(0, 0, 0, 100);
-      rect(width - 740, 500, 410, 210, 20);
+      rect(width - 740, 500, 410, 280, 20);
       fill("black");
 
       fill("white");
       noStroke();
-      rect(width - 735, 505, 400, 200, 20);
+      rect(width - 735, 505, 400, 270, 20);
       fill("black");
 
       textSize(18);
@@ -464,7 +473,8 @@ class Interface {
         "Data encryption is a vital security measure that protects sensitive\ninformation by converting it into unreadable code." +
           "\nIt ensures that only authorized individuals with the encryption key\ncan decipher and access the data, safeguarding it\nfrom" +
           " unauthorized interception and maintaining its confidentiality.\n\nImplementing robust encryption algorithms" +
-          "enhances data security\nand minimizes the risk of data breaches or unauthorized access.",
+          "enhances data security\nand minimizes the risk of data breaches or unauthorized access." +
+          "\n\n HP: 10\nCost: $200",
         width - 730,
         525
       );
@@ -503,12 +513,12 @@ class Interface {
       fill("black");
       cursor("grab");
       fill(0, 0, 0, 100);
-      rect(width - 740, 600, 410, 210, 20);
+      rect(width - 740, 600, 410, 280, 20);
       fill("black");
 
       fill("white");
       noStroke();
-      rect(width - 735, 605, 400, 200, 20);
+      rect(width - 735, 605, 400, 270, 20);
       fill("black");
 
       textSize(18);
@@ -516,7 +526,8 @@ class Interface {
         "Regular data backups are essential for preserving the integrity\nand availability of your important files and information." +
           "\nBy creating duplicate copies of your data and storing them in\nseparate locations, you can mitigate the impact of data loss\n" +
           "caused by various factors such as hardware failures, accidental\ndeletion, or malicious attacks.\nA reliable backup strategy ensures" +
-          " that you can restore your data\neffectively and resume operations in the event of data loss.",
+          " that you can restore your data\neffectively and resume operations in the event of data loss." +
+          "\n\n HP: 15\nCost: $300",
         width - 730,
         625
       );
@@ -555,12 +566,12 @@ class Interface {
       fill("black");
       cursor("grab");
       fill(0, 0, 0, 100);
-      rect(width - 740, 100, 410, 210, 20);
+      rect(width - 740, 100, 410, 280, 20);
       fill("black");
 
       fill("white");
       noStroke();
-      rect(width - 735, 105, 400, 200, 20);
+      rect(width - 735, 105, 400, 270, 20);
       fill("black");
 
       textSize(18);
@@ -568,7 +579,8 @@ class Interface {
         "Antivirus software provides essential protection against various\ntypes of malware, including viruses, worms, trojans, ransomware,\n" +
           "and other malicious programs. It scans and detects potential\nthreats, removes or quarantines infected files, and helps\nsafeguard your" +
           "computer and data from harmful attacks.\n\nStay updated with the latest antivirus definitions and run regular\nscans to ensure ongoing" +
-          "protection against evolving threats.",
+          "protection against evolving threats." +
+          "\n\n HP: 10\nCost: $100",
         width - 730,
         125
       );

@@ -63,7 +63,7 @@ function draw() {
     map.draw_grid();
 
     //* Create the enemy
-    if (tick % 100 == 0) {
+    if (tick % 150 == 0) {
       createVirus();
     }
 
@@ -98,6 +98,7 @@ function draw() {
     frameRate(60);
   } else if (gameState == "mainMenu") {
     background("white");
+    interface.draw();
 
     menu.draw();
   }
