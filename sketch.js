@@ -13,7 +13,7 @@ let ddosSprite;
 let antivirusSpriteRight;
 let antivirusSpriteLeft;
 
-let aVSprites = [];
+let antivirusSprites = [];
 let idsSprites = [];
 let firewallSprites = [];
 let netSegSprites = [];
@@ -56,13 +56,14 @@ function draw() {
     map.draw_grid();
 
     //* Create the enemy
-    if (tick % 50 == 0) {
+    if (tick % 100 == 0) {
       createVirus();
     }
 
     //* Draw the enemies
     for (e in enemies) {
-      enemies[e].draw();
+      enemy = enemies[e];
+      enemy.draw();
     }
 
     for (d in defenses) {
@@ -115,7 +116,9 @@ function loadAssets() {
   interfaceSmallFont = loadFont("assets/fonts/JLSDataGothicC_NC.otf");
 
   for (let i = 1; i < 7; i++) {
-    aVSprites.push(loadImage(`./assets/sprites/tools/antivirusSprite${i}.png`));
+    antivirusSprites.push(
+      loadImage(`./assets/sprites/tools/antivirus/antivirusSprite${i}.png`)
+    );
     idsSprites.push(loadImage(`./assets/sprites/tools/ids/idsSprite${i}.png`));
     firewallSprites.push(
       loadImage(`./assets/sprites/tools/firewall/firewallSprite${i}.png`)
@@ -173,55 +176,43 @@ function createVirus() {
   rand = floor(random(0, 12));
   //left
   if (rand == 0) {
-    enemies.push(new Enemy(15, 7, 324, 550, "left", 1, 1, whichSprite, type));
+    enemies.push(new Enemy(15, 7, 324, 550, "left", 1, whichSprite, type));
   }
   if (rand == 1) {
-    enemies.push(new Enemy(16, 7, 324, 575, "left", 2, 1, whichSprite, type));
+    enemies.push(new Enemy(16, 7, 324, 575, "left", 2, whichSprite, type));
   }
   if (rand == 2) {
-    enemies.push(new Enemy(17, 7, 324, 600, "left", 3, 1, whichSprite, type));
+    enemies.push(new Enemy(17, 7, 324, 600, "left", 3, whichSprite, type));
   }
   //top
   if (rand == 3) {
-    enemies.push(new Enemy(9, -1, 500, 200, "top", 1, 1, whichSprite, type));
+    enemies.push(new Enemy(9, -1, 500, 200, "top", 1, whichSprite, type));
   }
   if (rand == 4) {
-    enemies.push(new Enemy(9, 0, 450, 225, "top", 2, 1, whichSprite, type));
+    enemies.push(new Enemy(9, 0, 450, 225, "top", 2, whichSprite, type));
   }
   if (rand == 5) {
-    enemies.push(new Enemy(9, 1, 400, 250, "top", 3, 1, whichSprite, type));
+    enemies.push(new Enemy(9, 1, 400, 250, "top", 3, whichSprite, type));
   }
   //bottom
   if (rand == 6) {
-    enemies.push(
-      new Enemy(23, 1, 1100, 600, "bottom", 1, 1, whichSprite, type)
-    );
+    enemies.push(new Enemy(23, 1, 1100, 600, "bottom", 1, whichSprite, type));
   }
   if (rand == 7) {
-    enemies.push(
-      new Enemy(23, 0, 1150, 575, "bottom", 2, 1, whichSprite, type)
-    );
+    enemies.push(new Enemy(23, 0, 1150, 575, "bottom", 2, whichSprite, type));
   }
   if (rand == 8) {
-    enemies.push(
-      new Enemy(23, -1, 1200, 550, "bottom", 3, 1, whichSprite, type)
-    );
+    enemies.push(new Enemy(23, -1, 1200, 550, "bottom", 3, whichSprite, type));
   }
   //right
   if (rand == 9) {
-    enemies.push(
-      new Enemy(17, -7, 1200, 250, "right", 1, 1, whichSprite, type)
-    );
+    enemies.push(new Enemy(17, -7, 1200, 250, "right", 1, whichSprite, type));
   }
   if (rand == 10) {
-    enemies.push(
-      new Enemy(16, -7, 1150, 225, "right", 2, 1, whichSprite, type)
-    );
+    enemies.push(new Enemy(16, -7, 1150, 225, "right", 2, whichSprite, type));
   }
   if (rand == 11) {
-    enemies.push(
-      new Enemy(15, -7, 1100, 200, "right", 3, 1, whichSprite, type)
-    );
+    enemies.push(new Enemy(15, -7, 1100, 200, "right", 3, whichSprite, type));
   }
 }
 
@@ -286,6 +277,10 @@ function collisions() {
       ) {
         console.log("collision");
         enemies[j].hp -= 1;
+        tower.hp -= 1;
+        if (tower.hp <= 0) {
+          interface.towers.splice(i, 1);
+        }
         if (enemies[j].hp <= 0) {
           enemies.splice(j, 1);
         }

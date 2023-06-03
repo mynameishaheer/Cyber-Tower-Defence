@@ -8,6 +8,8 @@ let selectedTile = null;
 let offsetUseX = TILE_WIDTH / 2;
 let offsetUseY = TILE_HEIGHT / 2;
 
+let tempArr;
+
 var dir = "none";
 let isDragging = false;
 
@@ -306,7 +308,7 @@ class Interface {
       );
       if (mouseIsPressed) {
         cursor("grabbing");
-        this.selected = "antivirus";
+        this.selected = "ids";
       } else {
         cursor("grab");
         this.selected = "none";
@@ -358,7 +360,7 @@ class Interface {
       );
       if (mouseIsPressed) {
         cursor("grabbing");
-        this.selected = "antivirus";
+        this.selected = "firewall";
       } else {
         cursor("grab");
         this.selected = "none";
@@ -410,7 +412,7 @@ class Interface {
       );
       if (mouseIsPressed) {
         cursor("grabbing");
-        this.selected = "antivirus";
+        this.selected = "netSeg";
       } else {
         cursor("grab");
         this.selected = "none";
@@ -462,7 +464,7 @@ class Interface {
       );
       if (mouseIsPressed) {
         cursor("grabbing");
-        this.selected = "antivirus";
+        this.selected = "encryption";
       } else {
         cursor("grab");
         this.selected = "none";
@@ -514,7 +516,7 @@ class Interface {
       );
       if (mouseIsPressed) {
         cursor("grabbing");
-        this.selected = "antivirus";
+        this.selected = "backup";
       } else {
         cursor("grab");
         this.selected = "none";
@@ -525,7 +527,7 @@ class Interface {
   }
 
   drawAntiVirus() {
-    image(aVSprites[0], width - 300, 100);
+    image(antivirusSprites[0], width - 300, 100);
     textFont(interfaceSmallFont);
     textSize(23);
     fill("white");
@@ -593,10 +595,38 @@ class Interface {
       this.selected = "none";
     }
     if (this.selected == "antivirus") {
-      if (mouseIsPressed != true) {
-      }
       cursor("grabbing");
-      this.drawAntivirusOnMouse();
+      tempArr = antivirusSprites;
+      this.drawOnMouse();
+    }
+    if (this.selected == "backup") {
+      cursor("grabbing");
+      tempArr = backupSprites;
+      this.drawOnMouse();
+    }
+    if (this.selected == "encryption") {
+      cursor("grabbing");
+      tempArr = encryptionSprites;
+      this.drawOnMouse();
+    }
+    if (this.selected == "firewall") {
+      cursor("grabbing");
+      tempArr = firewallSprites;
+      this.drawOnMouse();
+    }
+    if (this.selected == "ids") {
+      cursor("grabbing");
+      tempArr = idsSprites;
+      this.drawOnMouse();
+    }
+    if (this.selected == "netSeg") {
+      cursor("grabbing");
+      tempArr = netSegSprites;
+      this.drawOnMouse();
+    }
+    if (this.selected == "none") {
+      cursor("default");
+      tempArr = antivirusSprites;
     }
   }
 
@@ -663,25 +693,25 @@ class Interface {
 
       if (map.grid[nearestTile.j][nearestTile.i] === 33) {
         //top and bttom
-        if (selectedTile.isOccupied === false) {
-          //top
-          image(aVSprites[4], nearestTileX, nearestTileY);
-        } else {
-          //bottom
-          image(aVSprites[5], nearestTileX, nearestTileY);
+        if (this.selected != "none") {
+          if (selectedTile.isOccupied === false) {
+            //top
+            image(tempArr[4], nearestTileX, nearestTileY);
+          } else {
+            //bottom
+            image(tempArr[5], nearestTileX, nearestTileY);
+          }
         }
       } else if (map.grid[nearestTile.j][nearestTile.i] === 34) {
-        //left and right
-        if (selectedTile.isOccupied === false) {
-          //left
-          image(aVSprites[1], nearestTileX + offsetUseX, nearestTileY);
-        } else {
-          //right
-          image(
-            aVSprites[2],
-            nearestTileX - offsetUseX,
-            nearestTileY - offsetUseY
-          );
+        if (this.selected != "none") {
+          //left and right
+          if (selectedTile.isOccupied === false) {
+            //left
+            image(tempArr[1], nearestTileX + offsetUseX, nearestTileY);
+          } else {
+            //right
+            image(tempArr[2], nearestTileX + offsetUseX, nearestTileY);
+          }
         }
       }
 
@@ -719,44 +749,33 @@ class Interface {
     }
   }
 
-  drawBuyStation() {
-    noStroke();
-    fill(30, 30, 30);
-    rect(windowWidth - 320, 0, 390, height, 20);
-    fill("black");
-    noStroke();
-    // text(this.selected, 200, 200);
-    fill("white");
-    textFont(interfaceLargeFont);
-    textSize(30);
-    text("Buy Station", width - 250, 60);
-    fill("black");
-    textFont(interfaceSmallFont);
-    textSize(18);
+  drawOnMouse() {
     if (this.selected === "antivirus") {
       cursor("grabbing");
-    } else {
-      cursor("grab");
-    }
-  }
-
-  drawAntivirusOnMouse() {
-    if (this.selected === "antivirus") {
+      image(antivirusSprites[0], mouseX - 14, mouseY - 28);
+      this.isDragging = true;
+    } else if (this.selected == "firewall") {
       cursor("grabbing");
-      image(aVSprites[0], mouseX - 14, mouseY - 28);
+      image(firewallSprites[0], mouseX - 14, mouseY - 28);
+      this.isDragging = true;
+    } else if (this.selected == "ids") {
+      cursor("grabbing");
+      image(idsSprites[0], mouseX - 14, mouseY - 28);
+      this.isDragging = true;
+    } else if (this.selected == "netSeg") {
+      cursor("grabbing");
+      image(netSegSprites[0], mouseX - 14, mouseY - 28);
+      this.isDragging = true;
+    } else if (this.selected == "encryption") {
+      cursor("grabbing");
+      image(encryptionSprites[0], mouseX - 14, mouseY - 28);
+      this.isDragging = true;
+    } else if (this.selected == "backup") {
+      cursor("grabbing");
+      image(backupSprites[0], mouseX - 14, mouseY - 28);
       this.isDragging = true;
     } else {
       this.isDragging = false;
-    }
-  }
-
-  update() {
-    if (mouseIsPressed != true) {
-      this.selected = "none";
-    }
-    if (this.selected == "antivirus") {
-      cursor("grabbing");
-      this.drawAntivirusOnMouse();
     }
   }
 
@@ -793,7 +812,7 @@ class Interface {
 function mouseReleased() {
   console.log("mouse released");
   if (
-    interface.selected === "antivirus" &&
+    interface.selected !== "none" &&
     selectedTile != null &&
     selectedTile.isOccupied === false
   ) {
@@ -809,9 +828,9 @@ function mouseReleased() {
           new Defense(
             towerIsometricX,
             towerIsometricY,
-            aVSprites[spriteIndex],
-            "antivirus",
-            50,
+            tempArr[spriteIndex],
+            interface.selected,
+
             dir
           )
         );
@@ -825,9 +844,9 @@ function mouseReleased() {
           new Defense(
             towerIsometricX,
             towerIsometricY,
-            aVSprites[spriteIndex],
-            "antivirus",
-            50,
+            tempArr[spriteIndex],
+            interface.selected,
+
             dir
           )
         );
@@ -841,9 +860,8 @@ function mouseReleased() {
           new Defense(
             towerIsometricX,
             towerIsometricY,
-            aVSprites[spriteIndex],
-            "antivirus",
-            50,
+            tempArr[spriteIndex],
+            interface.selected,
             dir
           )
         );
@@ -857,9 +875,8 @@ function mouseReleased() {
           new Defense(
             towerIsometricX,
             towerIsometricY,
-            aVSprites[spriteIndex],
-            "antivirus",
-            50,
+            tempArr[spriteIndex],
+            interface.selected,
             dir
           )
         );
@@ -889,7 +906,7 @@ function mouseReleased() {
 //           new Defense(
 //             towerIsometricX,
 //             towerIsometricY,
-//             aVSprites[spriteIndex],
+//             antivirusSprites[spriteIndex],
 //             "antivirus",
 //             50,
 //             dir
@@ -905,7 +922,7 @@ function mouseReleased() {
 //           new Defense(
 //             towerIsometricX,
 //             towerIsometricY,
-//             aVSprites[spriteIndex],
+//             antivirusSprites[spriteIndex],
 //             "antivirus",
 //             50,
 //             dir

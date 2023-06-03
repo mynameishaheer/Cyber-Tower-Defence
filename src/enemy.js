@@ -1,10 +1,10 @@
 class Enemy {
-  constructor(x, y, isoX, isoY, side, lane, hp, sprite, type) {
+  constructor(x, y, isoX, isoY, side, lane, sprite, type) {
     this.x = x;
     this.y = y;
     this.isometric_x = isoX;
     this.isometric_y = isoY;
-    this.hp = hp;
+    this.hp = 1;
     this.side = side;
     this.lane = lane;
     this.speed = 0.05;
@@ -14,6 +14,45 @@ class Enemy {
     this.type = type;
     this.width = 43;
     this.height = 43;
+    this.moneyLoss = 10;
+    this.moneyGain = 10;
+    console.log("enemy type:" + type);
+    switch (type) {
+      case "virus":
+        this.hp = 5;
+        this.moneyLoss = 120;
+        this.moneyGain = 30;
+        break;
+      case "ransomware":
+        this.hp = 4;
+        this.moneyLoss = 100;
+        this.moneyGain = 20;
+        break;
+      case "ddos":
+        this.hp = 2;
+        this.moneyLoss = 50;
+        this.moneyGain = 10;
+        break;
+      case "spyware":
+        this.hp = 3;
+        this.moneyLoss = 80;
+        this.moneyGain = 20;
+        break;
+      case "trojan":
+        this.hp = 4;
+        this.moneyLoss = 90;
+        this.moneyGain = 20;
+        break;
+      case "worm":
+        this.hp = 3;
+        this.moneyLoss = 70;
+        this.moneyGain = 15;
+      default:
+        this.hp = 1;
+        this.moneyLoss = 10;
+        this.moneyGain = 10;
+        break;
+    }
   }
 
   updateIsometricPosition() {
