@@ -29,6 +29,9 @@ class Menu {
       if (mouseIsPressed) {
         fill("green");
         gameState = "play";
+        buttonClick.play();
+        gameMusic.play();
+        gameMusic.setVolume(0.03);
       }
       fill(147, 200, 86, 255);
     } else {
