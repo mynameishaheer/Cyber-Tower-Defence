@@ -1,5 +1,5 @@
 class Defense {
-  constructor(x, y, sprite, type, position) {
+  constructor(x, y, sprite, type, position, tile) {
     this.x = x;
     this.y = y;
     this.size = 100;
@@ -10,6 +10,8 @@ class Defense {
     this.position = position;
     this.width = 43;
     this.height = 43;
+    this.tile = tile;
+    this.damage = 2;
     switch (type) {
       case "antivirus":
         this.price = 100;

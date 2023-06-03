@@ -42,7 +42,7 @@ class Interface {
     textFont(interfaceSmallFont);
     textSize(18);
     fill("red ");
-    text("Enemies Killed: " + enemiesKilled, 25, 160);
+    text("Virus Attacks Prevented: " + enemiesKilled, 25, 160);
     fill("black");
   }
 
@@ -63,7 +63,11 @@ class Interface {
     }
     textFont(interfaceLargeFont);
     textSize(30);
-    text(network.hp + " HP", width - 320 - 180, 120);
+    if (network.hp <= 0) {
+      text("GAME OVER", width - 320 - 180, 120);
+    } else {
+      text(network.hp + " HP", width - 320 - 180, 120);
+    }
     textFont(interfaceSmallFont);
     textSize(20);
     fill("black");
@@ -816,73 +820,83 @@ function mouseReleased() {
     selectedTile != null &&
     selectedTile.isOccupied === false
   ) {
-    if (selectedTile.isOccupied === false) {
-      let spriteIndex = 3;
-      if (dir === "left") {
-        spriteIndex = 0;
-        let towerX = nearestTileX + offsetUseX;
-        let towerY = nearestTileY;
-        let towerIsometricX = towerX;
-        let towerIsometricY = towerY;
-        interface.towers.push(
-          new Defense(
-            towerIsometricX,
-            towerIsometricY,
-            tempArr[spriteIndex],
-            interface.selected,
+    // create a new defense to check its price
+    let newDefense = new Defense(0, 0, null, interface.selected, "none", null);
+    if (money >= newDefense.price) {
+      if (selectedTile.isOccupied === false) {
+        let spriteIndex = 3;
+        if (dir === "left") {
+          spriteIndex = 0;
+          let towerX = nearestTileX + offsetUseX;
+          let towerY = nearestTileY;
+          let towerIsometricX = towerX;
+          let towerIsometricY = towerY;
+          interface.towers.push(
+            new Defense(
+              towerIsometricX,
+              towerIsometricY,
+              tempArr[spriteIndex],
+              interface.selected,
+              dir,
+              selectedTile
+            )
+          );
+        } else if (dir === "right") {
+          spriteIndex = 0;
+          let towerX = nearestTileX + offsetUseX;
+          let towerY = nearestTileY;
+          let towerIsometricX = towerX;
+          let towerIsometricY = towerY;
+          interface.towers.push(
+            new Defense(
+              towerIsometricX,
+              towerIsometricY,
+              tempArr[spriteIndex],
+              interface.selected,
+              dir,
+              selectedTile
+            )
+          );
+        } else if (dir === "top") {
+          spriteIndex = 3;
+          let towerX = nearestTileX;
+          let towerY = nearestTileY;
+          let towerIsometricX = towerX;
+          let towerIsometricY = towerY;
+          interface.towers.push(
+            new Defense(
+              towerIsometricX,
+              towerIsometricY,
+              tempArr[spriteIndex],
+              interface.selected,
+              dir,
+              selectedTile
+            )
+          );
+        } else if (dir === "bottom") {
+          spriteIndex = 3;
+          let towerX = nearestTileX;
+          let towerY = nearestTileY;
+          let towerIsometricX = towerX;
+          let towerIsometricY = towerY;
+          interface.towers.push(
+            new Defense(
+              towerIsometricX,
+              towerIsometricY,
+              tempArr[spriteIndex],
+              interface.selected,
+              dir,
+              selectedTile
+            )
+          );
+        }
 
-            dir
-          )
-        );
-      } else if (dir === "right") {
-        spriteIndex = 0;
-        let towerX = nearestTileX + offsetUseX;
-        let towerY = nearestTileY;
-        let towerIsometricX = towerX;
-        let towerIsometricY = towerY;
-        interface.towers.push(
-          new Defense(
-            towerIsometricX,
-            towerIsometricY,
-            tempArr[spriteIndex],
-            interface.selected,
+        money -= newDefense.price;
 
-            dir
-          )
-        );
-      } else if (dir === "top") {
-        spriteIndex = 3;
-        let towerX = nearestTileX;
-        let towerY = nearestTileY;
-        let towerIsometricX = towerX;
-        let towerIsometricY = towerY;
-        interface.towers.push(
-          new Defense(
-            towerIsometricX,
-            towerIsometricY,
-            tempArr[spriteIndex],
-            interface.selected,
-            dir
-          )
-        );
-      } else if (dir === "bottom") {
-        spriteIndex = 3;
-        let towerX = nearestTileX;
-        let towerY = nearestTileY;
-        let towerIsometricX = towerX;
-        let towerIsometricY = towerY;
-        interface.towers.push(
-          new Defense(
-            towerIsometricX,
-            towerIsometricY,
-            tempArr[spriteIndex],
-            interface.selected,
-            dir
-          )
-        );
+        selectedTile.isOccupied = true;
       }
-
-      selectedTile.isOccupied = true;
+    } else {
+      console.log("Not enough money to buy this defense!");
     }
   }
 }
