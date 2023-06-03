@@ -31,7 +31,7 @@ class Interface {
     textFont(interfaceLargeFont);
     textSize(48);
     fill(147, 186, 86, 255);
-    text("Cyber Tower Defence", 25, 79);
+    text("Cyber Tower Defense", 25, 79);
     fill("black");
     textFont(interfaceSmallFont);
     textSize(24);
