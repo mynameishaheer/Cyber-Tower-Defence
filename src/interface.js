@@ -278,7 +278,7 @@ class Interface {
     fill("white");
     text("Intrusion Detection System", width - 250, 230);
     fill("lightgreen");
-    text("Cost: $100", width - 250, 260);
+    text("Cost: $200", width - 250, 260);
 
     if (
       mouseX >= width - 307 &&
@@ -329,7 +329,7 @@ class Interface {
     fill("white");
     text("Firewall", width - 250, 330);
     fill("lightgreen");
-    text("Cost: $100", width - 250, 360);
+    text("Cost: $150", width - 250, 360);
 
     if (
       mouseX >= width - 307 &&
@@ -381,7 +381,7 @@ class Interface {
     fill("white");
     text("Network Segmentation", width - 250, 430);
     fill("lightgreen");
-    text("Cost: $100", width - 250, 460);
+    text("Cost: $250", width - 250, 460);
 
     if (
       mouseX >= width - 307 &&
@@ -433,7 +433,7 @@ class Interface {
     fill("white");
     text("Data Encryption", width - 250, 530);
     fill("lightgreen");
-    text("Cost: $100", width - 250, 560);
+    text("Cost: $200", width - 250, 560);
 
     if (
       mouseX >= width - 307 &&
@@ -485,7 +485,7 @@ class Interface {
     fill("white");
     text("Backup and Recovery", width - 250, 630);
     fill("lightgreen");
-    text("Cost: $100", width - 250, 660);
+    text("Cost: $300", width - 250, 660);
 
     if (
       mouseX >= width - 307 &&

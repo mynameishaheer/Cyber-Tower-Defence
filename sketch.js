@@ -34,7 +34,7 @@ let enemiesKilled = 0;
 let defenses = [];
 // let enemiesEscaped = 0;
 
-let money = 10000;
+let money = 5000;
 let gameState = "mainMenu";
 
 function setup() {
