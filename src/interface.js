@@ -64,6 +64,8 @@ class Interface {
     textFont(interfaceLargeFont);
     textSize(30);
     if (network.hp <= 0) {
+      gameState = "mainMenu";
+      location.reload();
       text("GAME OVER", width - 320 - 180, 120);
     } else {
       text(network.hp + " HP", width - 320 - 180, 120);
