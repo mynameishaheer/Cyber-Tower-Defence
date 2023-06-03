@@ -15,30 +15,30 @@ class Defense {
     switch (type) {
       case "antivirus":
         this.price = 100;
-        this.hp = 3;
+        this.hp = 10;
         break;
       case "firewall":
         this.price = 150;
-        this.hp = 5;
+        this.hp = 15;
         break;
       case "ids":
         this.price = 200;
-        this.hp = 4;
+        this.hp = 10;
         break;
       case "backup":
         this.price = 300;
-        this.hp = 3;
+        this.hp = 15;
         break;
       case "encryption":
         this.price = 200;
-        this.hp = 2;
+        this.hp = 10;
         break;
       case "netSeg":
         this.price = 250;
-        this.hp = 4;
+        this.hp = 15;
       default:
         this.price = 100;
-        this.hp = 1;
+        this.hp = 10;
         break;
     }
 
