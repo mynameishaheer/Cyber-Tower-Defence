@@ -29,6 +29,9 @@ let interfaceSmallFont;
 
 let menu;
 
+let gameMusic;
+let buttonClick;
+
 let enemies = [];
 let enemiesKilled = 0;
 let defenses = [];
@@ -36,6 +39,11 @@ let defenses = [];
 
 let money = 5000;
 let gameState = "mainMenu";
+
+function preload() {
+  gameMusic = loadSound("./assets/sounds/music/gameMusic.mp3");
+  buttonClick = loadSound("./assets/sounds/effects/click.wav");
+}
 
 function setup() {
   createCanvas(windowWidth, wHeight);
@@ -49,7 +57,6 @@ function draw() {
   if (gameState == "play") {
     //* Update the ticker
     updateTicker();
-
     background("white");
 
     //* Draw the map
@@ -133,13 +140,6 @@ function loadAssets() {
       loadImage(`./assets/sprites/tools/backup/backupSprite${i}.png`)
     );
   }
-
-  // antivirusSpriteRight = loadImage(
-  //   "./assets/sprites/tools/antivirusSpriteRight.png"
-  // );
-  // antivirusSpriteLeft = loadImage(
-  //   "./assets/sprites/tools/antivirusSpriteLeft.png"
-  // );
 }
 function createMap() {
   map = new Map();
