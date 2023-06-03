@@ -259,6 +259,15 @@ function collisions() {
   const enemyWidth = 20; // Adjust the enemy width
   const enemyHeight = 20; // Adjust the enemy height
 
+  let towerTypeDamageMap = {
+    antivirus: "virus",
+    ids: "trojan",
+    firewall: "worm",
+    netSeg: "ddos",
+    encryption: "spyware",
+    backup: "ransomware",
+  };
+
   for (let i = 0; i < interface.towers.length; i++) {
     let tower = interface.towers[i];
 
@@ -275,14 +284,33 @@ function collisions() {
         Math.abs(enemyCenterX - towerCenterX) < (enemyWidth + towerWidth) / 2 &&
         Math.abs(enemyCenterY - towerCenterY) < (enemyHeight + towerHeight) / 2
       ) {
-        console.log("collision");
-        enemies[j].hp -= 1;
+        let damageApplied = false;
+
+        for (let type in towerTypeDamageMap) {
+          if (tower.type == type && enemy.type == towerTypeDamageMap[type]) {
+            enemies[j].hp -= tower.damage * 2;
+            damageApplied = true;
+            console.log("damage applied super effective");
+            console.log("enemy health: " + enemies[j].hp);
+            break;
+          }
+        }
+
+        if (!damageApplied) {
+          enemies[j].hp -= tower.damage / 2;
+          console.log("damage applied weak");
+          console.log("enemy health: " + enemies[j].hp);
+        }
+
         tower.hp -= 1;
         if (tower.hp <= 0) {
+          tower.tile.isOccupied = false;
           interface.towers.splice(i, 1);
         }
         if (enemies[j].hp <= 0) {
+          money += enemies[j].moneyGain;
           enemies.splice(j, 1);
+          enemiesKilled++;
         }
       }
     }
