@@ -3,6 +3,9 @@
 
 The purpose of this game is to provide a fun and engaging way to learn about cyber security.
 
+#### Play the game
+https://mynameishaheer.github.io/Cyber-Tower-Defense/
+
 #### Running the code
 1. Open in VS Code
 2. Install VS Code Extension "p5.vscode" by publisher Sam Lavigne
